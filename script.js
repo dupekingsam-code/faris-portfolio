@@ -1,56 +1,70 @@
-// Portfolio UI + Supabase profile data
-const sections = document.querySelectorAll(".section");
-
+const sections = document.querySelectorAll(".reveal");
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) entry.target.classList.add("visible");
   });
-}, { threshold: 0.12 });
-
+}, { threshold: 0.1 });
 sections.forEach((section) => observer.observe(section));
 
-// Supabase connection — the publishable key is safe for frontend use.
+const menuButton = document.getElementById("menu-button");
+const mobileMenu = document.getElementById("mobile-menu");
+menuButton?.addEventListener("click", () => {
+  const open = mobileMenu.classList.toggle("open");
+  menuButton.setAttribute("aria-expanded", String(open));
+});
+mobileMenu?.querySelectorAll("a").forEach((link) => {
+  link.addEventListener("click", () => {
+    mobileMenu.classList.remove("open");
+    menuButton?.setAttribute("aria-expanded", "false");
+  });
+});
+
 const SUPABASE_URL = "https://zrcfulryxnwffdlpudxo.supabase.co";
 const SUPABASE_KEY = "sb_publishable_4KcOsFvIRvjgI0JMMjZRqA_8uDrjodc";
 const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 async function loadProfile() {
-  const { data, error } = await supabaseClient
-    .from("profile")
-    .select("name, bio, email, instagram")
-    .order("id", { ascending: true })
-    .limit(1)
-    .maybeSingle();
+  try {
+    const { data, error } = await supabaseClient
+      .from("profile")
+      .select("name, bio, email, instagram")
+      .order("id", { ascending: true })
+      .limit(1)
+      .maybeSingle();
 
-  if (error) {
-    console.error("Could not load profile:", error);
-    return;
-  }
+    if (error || !data) return;
 
-  if (!data) return;
+    const name = data.name || "Faris";
+    const bio = data.bio || "";
+    const email = data.email || "";
+    const instagram = data.instagram || "";
 
-  const name = data.name || "Faris";
-  const bio = data.bio || "";
-  const email = data.email || "";
-  const instagram = data.instagram || "";
+    document.title = name + " — Developer · Designer · Creator";
+    document.querySelector('meta[name="description"]')?.setAttribute("content", bio);
 
-  document.title = name + " — Student & AI Enthusiast";
-  document.querySelector('meta[name="description"]')?.setAttribute("content", bio);
+    const logo = document.querySelector(".logo");
+    if (logo) logo.innerHTML = name.toUpperCase() + "<span>.</span>";
 
-  document.querySelector(".logo").innerHTML = name.toUpperCase() + "<span>.</span>";
-  document.getElementById("hero-name").textContent = name + ".";
-  document.getElementById("hero-bio").textContent = bio;
-  document.getElementById("about-bio").textContent = bio;
+    const heroName = document.getElementById("hero-name");
+    if (heroName) heroName.textContent = name + ".";
 
-  ["nav-instagram", "hero-instagram", "connect-instagram"].forEach((id) => {
-    const link = document.getElementById(id);
-    if (link && instagram) link.href = instagram;
-  });
+    const heroBio = document.getElementById("hero-bio");
+    if (heroBio && bio) heroBio.textContent = bio;
 
-  const emailLink = document.getElementById("connect-email");
-  if (emailLink && email) {
-    emailLink.href = "mailto:" + email;
+    const aboutBio = document.getElementById("about-bio");
+    if (aboutBio && bio) aboutBio.textContent = bio;
+
+    ["nav-instagram", "contact-instagram"].forEach((id) => {
+      const link = document.getElementById(id);
+      if (link && instagram) link.href = instagram;
+    });
+
+    const emailLink = document.getElementById("contact-email");
+    if (emailLink && email) emailLink.href = "mailto:" + email;
+  } catch (error) {
+    console.error("Profile loading failed:", error);
   }
 }
 
+document.getElementById("year").textContent = new Date().getFullYear();
 loadProfile();
