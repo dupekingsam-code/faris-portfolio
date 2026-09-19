@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Faris Admin</title>
+  <link rel="stylesheet" href="admin.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <main class="shell">
+    <section id="login-card" class="card">
+      <div class="eyebrow">PRIVATE AREA</div>
+      <h1>Faris Admin</h1>
+      <p class="muted">Sign in to update your portfolio.</p>
+      <form id="login-form">
+        <label>Email<input id="login-email" type="email" autocomplete="email" required value="dupekingsam@gmail.com"></label>
+        <label>Password<input id="login-password" type="password" autocomplete="current-password" required></label>
+        <button type="submit">Sign in</button>
+        <p id="login-status" class="status"></p>
+      </form>
+    </section>
+
+    <section id="dashboard" class="hidden">
+      <div class="topbar">
+        <div>
+          <div class="eyebrow">CONTROL ROOM</div>
+          <h1>Portfolio Admin</h1>
+        </div>
+        <button id="logout" class="secondary">Log out</button>
+      </div>
+
+      <section class="card">
+        <h2>Profile</h2>
+        <p class="muted">These values appear on the public website.</p>
+        <form id="profile-form">
+          <label>Name<input id="name" type="text" required></label>
+          <label>Bio<textarea id="bio" rows="4" required></textarea></label>
+          <label>Public email<input id="email" type="email"></label>
+          <label>Instagram URL<input id="instagram" type="url" placeholder="https://www.instagram.com/..."></label>
+          <button id="save-profile" type="submit">Save changes</button>
+          <p id="save-status" class="status"></p>
+        </form>
+      </section>
+
+      <section class="card coming">
+        <div>
+          <h2>Projects</h2>
+          <p class="muted">Project management is the next module. It will let you add, edit and delete projects without touching the website code.</p>
+        </div>
+        <span>COMING NEXT</span>
+      </section>
+    </section>
+  </main>
+  <script src="admin.js?v=4"></script>
+</body>
+</html>
