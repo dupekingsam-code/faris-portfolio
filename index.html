@@ -3,106 +3,224 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Faris — Student & AI Enthusiast</title>
-  <meta name="description" content="Faris — a student exploring AI, technology, and whatever interesting thing comes next." />
-  <link rel="stylesheet" href="styles.css" />
+  <meta name="theme-color" content="#05070b" />
+  <title>Faris — Developer · Designer · Creator</title>
+  <meta name="description" content="Faris — developer, designer and creator building digital experiences." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=2" />
 </head>
 <body>
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+  <div class="grid-glow"></div>
   <div class="noise"></div>
 
   <header class="nav">
-    <a class="logo" href="#home">FARIS<span>.</span></a>
-    <nav>
-      <a href="#about">About</a>
+    <a class="logo" href="#home" aria-label="Faris home">FARIS<span>.</span></a>
+
+    <nav class="desktop-nav" aria-label="Main navigation">
+      <a class="active" href="#home">Home</a>
       <a href="#work">Work</a>
-      <a href="#connect">Connect</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
     </nav>
-    <a id="nav-instagram" class="nav-pill" href="https://www.instagram.com/farixhere/" target="_blank" rel="noopener noreferrer">Instagram ↗</a>
+
+    <div class="nav-actions">
+      <a id="nav-instagram" class="nav-social" href="https://www.instagram.com/farixhere/" target="_blank" rel="noopener noreferrer">Instagram ↗</a>
+      <button class="menu-button" id="menu-button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span></span><span></span>
+      </button>
+    </div>
   </header>
+
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#home">Home</a>
+    <a href="#work">Work</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </div>
 
   <main>
     <section id="home" class="hero">
-      <p class="eyebrow">STUDENT · AI ENTHUSIAST · CURIOUS MIND</p>
-      <h1>Hey, I'm <span id="hero-name">Faris.</span></h1>
-      <p id="hero-bio" class="hero-copy">
-        A student exploring AI, technology, and whatever interesting thing comes next.
-      </p>
-      <div class="hero-actions">
-        <a class="button primary" href="#about">Get to know me ↓</a>
-        <a id="hero-instagram" class="button ghost" href="https://www.instagram.com/farixhere/" target="_blank" rel="noopener noreferrer">Instagram ↗</a>
-      </div>
-      <div class="scroll-note">SCROLL TO EXPLORE</div>
-    </section>
-
-    <section id="about" class="section split">
-      <div>
-        <p class="section-label">01 / ABOUT</p>
-        <h2>Still figuring things out.<br /><em>That's the point.</em></h2>
-      </div>
-      <div class="section-text">
-        <p id="about-bio">
-          I'm Faris, currently working through my degree while getting increasingly
-          obsessed with artificial intelligence and technology.
+      <div class="hero-copy-wrap reveal">
+        <p class="eyebrow"><span class="live-dot"></span> AVAILABLE FOR NEW OPPORTUNITIES</p>
+        <p class="hero-kicker">DEVELOPER · DESIGNER · CREATOR</p>
+        <h1>Hey, I'm <span id="hero-name">Faris.</span></h1>
+        <p id="hero-bio" class="hero-copy">
+          I build digital experiences that actually feel good to use.
         </p>
-        <p>
-          This site is a living record of the things I learn, build, discover,
-          and eventually create.
-        </p>
-      </div>
-    </section>
 
-    <section id="work" class="section">
-      <div class="section-heading">
-        <div>
-          <p class="section-label">02 / WORK</p>
-          <h2>Things I'll build.</h2>
+        <div class="hero-actions">
+          <a class="button primary" href="#work">View my work <span>→</span></a>
+          <a class="button ghost" href="#contact">Get in touch <span>↗</span></a>
         </div>
-        <span class="muted">PROJECTS — 2026 →</span>
       </div>
 
-      <div class="empty-work">
-        <div class="empty-number">01</div>
-        <div>
-          <h3>Nothing here. Yet.</h3>
-          <p>The first project gets added when there's something worth showing.</p>
+      <div class="hero-visual reveal" aria-hidden="true">
+        <div class="visual-halo"></div>
+        <div class="visual-orbit orbit-one"></div>
+        <div class="visual-orbit orbit-two"></div>
+        <div class="visual-card visual-card-main">
+          <div class="visual-topline"><span>FARIS / 2026</span><span>01</span></div>
+          <div class="visual-monogram">F<span>.</span></div>
+          <div class="visual-bottomline"><span>BUILD / LEARN / CREATE</span><span>↗</span></div>
         </div>
-        <span class="status">COMING SOON</span>
+        <div class="floating-note note-one">BETTER<br />IDEAS<br />AHEAD</div>
+        <div class="floating-note note-two">SCROLL<br /><span>↓</span></div>
       </div>
     </section>
 
-    <section class="section interest">
-      <p class="section-label">03 / CURRENTLY</p>
-      <div class="interest-line">
-        <span>Exploring</span>
-        <strong>AI</strong>
-        <span>and</span>
-        <strong>what I can build with it.</strong>
+    <section id="work" class="section work-section">
+      <div class="section-heading reveal">
+        <div>
+          <p class="section-label">01 / SELECTED WORK</p>
+          <h2>Things I'm building.</h2>
+        </div>
+        <span class="section-meta">PROJECTS — 2026 →</span>
+      </div>
+
+      <div class="project-grid">
+        <article class="project-card reveal">
+          <div class="project-art art-one">
+            <div class="mini-window">
+              <div class="window-dots"><i></i><i></i><i></i></div>
+              <div class="mini-line wide"></div><div class="mini-line"></div>
+              <div class="mini-panels"><span></span><span></span><span></span></div>
+            </div>
+            <span class="project-tag">WEB APP</span>
+          </div>
+          <div class="project-info">
+            <div><span class="project-index">01</span><h3>Digital Experiences</h3></div>
+            <p>Interfaces focused on clarity, interaction and the details people actually notice.</p>
+            <span class="project-link">VIEW PROJECT <b>→</b></span>
+          </div>
+        </article>
+
+        <article class="project-card reveal">
+          <div class="project-art art-two">
+            <div class="browser-frame">
+              <div class="browser-bar"><span></span><span></span><span></span></div>
+              <div class="browser-word">NEXA</div>
+            </div>
+            <span class="project-tag">WEBSITE</span>
+          </div>
+          <div class="project-info">
+            <div><span class="project-index">02</span><h3>Creative Web</h3></div>
+            <p>Modern responsive websites with personality, motion and a strong visual system.</p>
+            <span class="project-link">VIEW PROJECT <b>→</b></span>
+          </div>
+        </article>
+
+        <article class="project-card reveal">
+          <div class="project-art art-three">
+            <div class="phone phone-back"></div>
+            <div class="phone phone-front"><span></span><i></i><i></i><i></i></div>
+            <span class="project-tag">MOBILE UI</span>
+          </div>
+          <div class="project-info">
+            <div><span class="project-index">03</span><h3>Product Concepts</h3></div>
+            <p>Exploring useful ideas through simple mobile-first interfaces and prototypes.</p>
+            <span class="project-link">VIEW PROJECT <b>→</b></span>
+          </div>
+        </article>
+      </div>
+
+      <div class="work-note reveal">
+        <span class="live-dot"></span>
+        <span>More real projects will appear here as they're built.</span>
       </div>
     </section>
 
-    <section id="connect" class="section connect">
-      <p class="section-label">04 / CONNECT</p>
-      <h2>Let's keep in touch.</h2>
-      <div class="links">
-        <a id="connect-instagram" href="https://www.instagram.com/farixhere/" target="_blank" rel="noopener noreferrer">
-          <span>Instagram</span><span>↗</span>
-        </a>
-        <a id="connect-email" href="mailto:farisdomain@gmail.com">
-          <span>Email</span><span>↗</span>
-        </a>
-        <div class="disabled-link"><span>YouTube</span><span>SOON</span></div>
-        <div class="disabled-link"><span>GitHub</span><span>SOON</span></div>
-        <div class="disabled-link"><span>LinkedIn</span><span>SOON</span></div>
+    <section class="section services-section">
+      <div class="section-heading reveal">
+        <div>
+          <p class="section-label">02 / WHAT I DO</p>
+          <h2>Curiosity, turned<br /><em>into things.</em></h2>
+        </div>
+      </div>
+
+      <div class="services-grid">
+        <article class="service reveal">
+          <span class="service-number">01</span>
+          <div class="service-icon">⌁</div>
+          <h3>UI / UX Design</h3>
+          <p>Creating clean, intuitive and user-friendly interfaces.</p>
+        </article>
+        <article class="service reveal">
+          <span class="service-number">02</span>
+          <div class="service-icon">&lt;/&gt;</div>
+          <h3>Web Development</h3>
+          <p>Building modern, responsive web experiences that work.</p>
+        </article>
+        <article class="service reveal">
+          <span class="service-number">03</span>
+          <div class="service-icon">✦</div>
+          <h3>Creative Tech</h3>
+          <p>Exploring AI, new tools and ideas to create useful experiences.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="about" class="section about-section">
+      <div class="section-heading reveal">
+        <div>
+          <p class="section-label">03 / ABOUT ME</p>
+          <h2>Still learning.<br /><em>Still building.</em></h2>
+        </div>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-portrait reveal">
+          <div class="portrait-glow"></div>
+          <div class="portrait-letter">F<span>.</span></div>
+          <span>FARIS / 2026</span>
+        </div>
+
+        <div class="about-copy reveal">
+          <p id="about-bio" class="about-lead">
+            I'm a developer and designer who enjoys turning ideas into real, functional products.
+          </p>
+          <p>I like solving problems, learning new technologies, and creating things that make a difference — even if it's just a small one.</p>
+          <div class="chips">
+            <span>Problem Solver</span><span>Tech Enthusiast</span><span>Lifelong Learner</span>
+          </div>
+        </div>
+
+        <div class="about-details reveal">
+          <div><span>EDUCATION</span><strong>Pondicherry University<br />BCA (DDE)</strong></div>
+          <div><span>FOCUS</span><strong>AI · Design · Web</strong></div>
+          <div><span>BASED IN</span><strong>India</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section contact-section">
+      <div class="contact-card reveal">
+        <div>
+          <p class="section-label">04 / CONTACT</p>
+          <h2>Let's <span>build</span><br />something.</h2>
+          <p>Got an idea, a project or just want to say hi?<br />I'd love to hear from you.</p>
+        </div>
+        <div class="contact-actions">
+          <a id="contact-email" class="button primary" href="mailto:farisdomain@gmail.com">Get in touch <span>↗</span></a>
+          <div class="social-row">
+            <a id="contact-instagram" href="https://www.instagram.com/farixhere/" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a href="mailto:farisdomain@gmail.com">Email</a>
+          </div>
+        </div>
       </div>
     </section>
   </main>
 
   <footer>
-    <span>© 2026 FARIS</span>
-    <span>BUILT WITH CURIOSITY.</span>
+    <span class="footer-logo">FARIS<span>.</span></span>
+    <span>DEVELOPER · DESIGNER · CREATOR</span>
+    <span>© <span id="year">2026</span> FARIS</span>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="script.js"></script>
+  <script src="script.js?v=2"></script>
 </body>
 </html>
