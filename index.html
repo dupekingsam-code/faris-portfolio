@@ -17,19 +17,19 @@
       <a href="#work">Work</a>
       <a href="#connect">Connect</a>
     </nav>
-    <a class="nav-pill" href="https://www.instagram.com/farixhere/" target="_blank" rel="noopener noreferrer">Instagram ↗</a>
+    <a id="nav-instagram" class="nav-pill" href="https://www.instagram.com/farixhere/" target="_blank" rel="noopener noreferrer">Instagram ↗</a>
   </header>
 
   <main>
     <section id="home" class="hero">
       <p class="eyebrow">STUDENT · AI ENTHUSIAST · CURIOUS MIND</p>
-      <h1>Hey, I'm <span>Faris.</span></h1>
-      <p class="hero-copy">
+      <h1>Hey, I'm <span id="hero-name">Faris.</span></h1>
+      <p id="hero-bio" class="hero-copy">
         A student exploring AI, technology, and whatever interesting thing comes next.
       </p>
       <div class="hero-actions">
         <a class="button primary" href="#about">Get to know me ↓</a>
-        <a class="button ghost" href="https://www.instagram.com/farixhere/" target="_blank" rel="noopener noreferrer">Instagram ↗</a>
+        <a id="hero-instagram" class="button ghost" href="https://www.instagram.com/farixhere/" target="_blank" rel="noopener noreferrer">Instagram ↗</a>
       </div>
       <div class="scroll-note">SCROLL TO EXPLORE</div>
     </section>
@@ -40,7 +40,7 @@
         <h2>Still figuring things out.<br /><em>That's the point.</em></h2>
       </div>
       <div class="section-text">
-        <p>
+        <p id="about-bio">
           I'm Faris, currently working through my degree while getting increasingly
           obsessed with artificial intelligence and technology.
         </p>
@@ -84,10 +84,10 @@
       <p class="section-label">04 / CONNECT</p>
       <h2>Let's keep in touch.</h2>
       <div class="links">
-        <a href="https://www.instagram.com/farixhere/" target="_blank" rel="noopener noreferrer">
+        <a id="connect-instagram" href="https://www.instagram.com/farixhere/" target="_blank" rel="noopener noreferrer">
           <span>Instagram</span><span>↗</span>
         </a>
-        <a href="mailto:farisdomain@gmail.com">
+        <a id="connect-email" href="mailto:farisdomain@gmail.com">
           <span>Email</span><span>↗</span>
         </a>
         <div class="disabled-link"><span>YouTube</span><span>SOON</span></div>
@@ -102,6 +102,7 @@
     <span>BUILT WITH CURIOSITY.</span>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="script.js"></script>
 </body>
 </html>
