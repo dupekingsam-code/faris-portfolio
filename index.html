@@ -13,53 +13,103 @@
 </head>
 <body class="construction-page">
   <main class="construction">
+    <div class="sky" aria-hidden="true">
+      <div class="sun"></div><div class="cloud cloud-a"></div><div class="cloud cloud-b"></div>
+      <div class="bird bird-a">⌁</div><div class="bird bird-b">⌁</div>
+    </div>
     <div class="construction-bg-name" aria-hidden="true">FARIS</div>
 
-    <div class="road-lines" aria-hidden="true"></div>
-
-    <section class="construction-board" aria-label="Website under construction">
-      <div class="board-stripe"></div>
-
-      <div class="board-top">
-        <span>⚠ WEBSITE ROADWORK</span>
-        <span>01 / 01</span>
-      </div>
-
-      <div class="board-content">
-        <p class="board-kicker">PLEASE SLOW DOWN</p>
-        <h1>WE'RE<br><strong>BUILDING.</strong></h1>
-
-        <div class="board-divider"></div>
-
-        <p class="board-message">
-          This website is currently under construction because Faris is still
-          figuring out what the hell he wants it to be.
-        </p>
-
-        <div class="board-status">
-          <span class="status-dot"></span>
-          <span>CONSTRUCTION IN PROGRESS</span>
+    <section class="site-zone">
+      <div class="zone-tape" aria-hidden="true"></div>
+      <div class="signpost">
+        <div class="sign-hanger"></div>
+        <div class="construction-board" id="board">
+          <div class="board-stripe"></div>
+          <div class="board-top"><span>⚠ WEBSITE ROADWORK</span><span>01 / 01</span></div>
+          <div class="board-content">
+            <p class="board-kicker">PLEASE SLOW DOWN</p>
+            <h1>WE'RE<br><strong>BUILDING.</strong></h1>
+            <div class="board-divider"></div>
+            <p class="board-message">This website is currently under construction because Faris is still figuring out what the hell he wants it to be.</p>
+            <div class="board-status"><span class="status-dot"></span><span>CONSTRUCTION IN PROGRESS</span></div>
+          </div>
+          <div class="board-bottom"><span>NEW DESIGN COMING SOON-ish</span><span>— FARIS</span></div>
+          <div class="board-stripe bottom"></div>
         </div>
+        <div class="post post-a"></div><div class="post post-b"></div>
       </div>
 
-      <div class="board-bottom">
-        <span>NEW DESIGN COMING SOON-ish</span>
-        <span>— FARIS</span>
+      <div class="road">
+        <div class="road-mark mark-a"></div><div class="road-mark mark-b"></div><div class="road-mark mark-c"></div>
+        <button class="cone cone-a" type="button" aria-label="Click the traffic cone"></button>
+        <button class="cone cone-b" type="button" aria-label="Click the second traffic cone"></button>
+        <button class="worker" type="button" aria-label="Click the construction worker">
+          <span class="worker-head"></span><span class="worker-body"></span><span class="worker-legs"></span>
+        </button>
+        <div class="car" aria-hidden="true">🚗</div>
       </div>
 
-      <div class="board-stripe bottom"></div>
+      <div class="construction-note">
+        <span>🚧</span>
+        <p><strong>DRIVE CAREFULLY.</strong><br>Ideas are being moved around.</p>
+      </div>
     </section>
 
-    <div class="construction-note">
-      <span>🚧</span>
-      <p><strong>DRIVE CAREFULLY.</strong><br>Ideas are being moved around.</p>
+    <div class="fun-panel" id="funPanel" aria-live="polite">
+      <strong>YOU FOUND THE SITE CREW.</strong>
+      <span id="crewMessage">Tap something around the road.</span>
     </div>
 
-    <footer class="construction-footer">
+    <div class="construction-footer">
       <span>© 2026 FARIS</span>
       <a href="https://www.instagram.com/farixhere/" target="_blank" rel="noopener noreferrer">INSTAGRAM ↗</a>
+      <button id="slowButton" type="button">🐢 SLOW MODE</button>
       <span>BUILT WITH CURIOSITY + CAFFEINE.</span>
-    </footer>
+    </div>
   </main>
-</body>
+<script>
+(function(){
+  const root=document.querySelector('.construction-page');
+  const panel=document.getElementById('funPanel');
+  const message=document.getElementById('crewMessage');
+  const board=document.getElementById('board');
+  const worker=document.querySelector('.worker');
+  const cones=document.querySelectorAll('.cone');
+  const slowButton=document.getElementById('slowButton');
+  let taps=0;
+  const messages=[
+    'Yep. Still building. Very professional construction crew.',
+    'The design is somewhere under this pile of ideas.',
+    'We found a bug. It has been asked to leave the premises.',
+    'Faris is currently turning caffeine into website decisions.',
+    'No, seriously. Come back when the road is finished. 😭'
+  ];
+  function say(text){
+    message.textContent=text;
+    panel.classList.add('show');
+    clearTimeout(window.__crewTimer);
+    window.__crewTimer=setTimeout(()=>panel.classList.remove('show'),4200);
+  }
+  board.addEventListener('click',()=>{
+    taps++;
+    board.classList.remove('board-shake'); void board.offsetWidth; board.classList.add('board-shake');
+    say(taps>3?'Okay, you have officially inspected the construction site.':messages[taps-1]);
+  });
+  worker.addEventListener('click',()=>{
+    worker.classList.add('wave');
+    say('The site worker says: “Almost done.” He is lying. 😭');
+    setTimeout(()=>worker.classList.remove('wave'),900);
+  });
+  cones.forEach((cone,i)=>cone.addEventListener('click',()=>{
+    cone.classList.add('cone-fall'); setTimeout(()=>cone.classList.remove('cone-fall'),700);
+    say(i===0?'Traffic cone #1: absolutely essential.':'Traffic cone #2: doing important cone work.');
+  }));
+  slowButton.addEventListener('click',()=>{
+    root.classList.toggle('slow-mode');
+    slowButton.textContent=root.classList.contains('slow-mode')?'🐇 NORMAL MODE':'🐢 SLOW MODE';
+    say(root.classList.contains('slow-mode')?'Everything is now moving at construction-site speed.':'Normal speed restored.');
+  });
+  document.querySelector('.car').addEventListener('click',()=>say('That car has somewhere to be. Unlike us.'));
+})();
+</script></body>
 </html>
