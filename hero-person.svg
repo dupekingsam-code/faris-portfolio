@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 720">
+  <defs>
+    <radialGradient id="halo"><stop stop-color="#bfc7d4" stop-opacity=".28"/><stop offset=".7" stop-color="#657080" stop-opacity=".08"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
+    <linearGradient id="coat" x1="0" x2="1"><stop stop-color="#0a0d12"/><stop offset=".48" stop-color="#727b89"/><stop offset="1" stop-color="#090c11"/></linearGradient>
+    <linearGradient id="pants" x1="0" x2="1"><stop stop-color="#080b10"/><stop offset=".5" stop-color="#414956"/><stop offset="1" stop-color="#07090d"/></linearGradient>
+    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="3" seed="7"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="table" tableValues="0 .16"/></feComponentTransfer><feBlend in="SourceGraphic" mode="screen"/></filter>
+  </defs>
+  <ellipse cx="220" cy="345" rx="205" ry="340" fill="url(#halo)"/>
+  <g filter="url(#grain)">
+    <circle cx="214" cy="72" r="38" fill="#aeb6c2"/>
+    <path d="M178 66c-2-30 21-52 53-49 29 2 43 24 38 53-14-9-25-20-34-35-14 21-31 31-57 31z" fill="#e1e5ea"/>
+    <path d="M176 128c14-28 78-30 99 3l22 166c-10 32-30 47-61 49-34 2-63-17-74-51z" fill="url(#coat)"/>
+    <path d="M180 136c-22 38-34 82-42 139l24 5c13-42 24-76 42-111z" fill="#171c24"/>
+    <path d="M275 136c23 38 35 84 43 140l-25 5c-12-42-23-78-42-112z" fill="#171c24"/>
+    <path d="M201 281l-5 177-53 179 60 3 40-177 8-181z" fill="url(#pants)"/>
+    <path d="M251 282l4 179 53 177-60 3-39-177-8-181z" fill="url(#pants)"/>
+    <path d="M141 637l64 1 18 27c-30 12-69 13-100 1z" fill="#090c11"/>
+    <path d="M250 638l63-1 22 28c-29 12-70 12-101 0z" fill="#090c11"/>
+    <path d="M190 142l24 65 30-65 18 8-29 73h-35l-29-73z" fill="#c4cad2" opacity=".25"/>
+    <path d="M204 178h20v92h-20z" fill="#080b10" opacity=".65"/>
+  </g>
+</svg>
