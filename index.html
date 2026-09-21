@@ -80,7 +80,7 @@
 </section>
 
 <section class="work section-pad reveal" id="work">
-  <div class="section-head"><div><div class="section-label">04 — WORK</div><h2>Things I've <em>made.</em></h2></div><button class="filter-chip active" data-filter="all">All work</button></div>
+  <div class="section-head"><div><div class="section-label">04 — WORK</div><h2>Things I've <em>made.</em></h2></div><div class="project-filters" id="projectFilters"><button class="filter-chip active" data-filter="all">All work</button></div></div>
   <div class="project-grid" id="projectGrid"><div class="empty-project"><span>01</span><h3>Things are being built.</h3><p>There's nothing I'm ready to show here yet. That's okay. The interesting part is usually what happens before the finished thing.</p><span class="tiny">CHECK BACK LATER ↗</span></div></div>
 </section>
 
@@ -109,10 +109,10 @@
 </footer>
 
 <button class="ask-faris" id="askFaris" type="button" aria-label="Ask Faris AI"><span>✦</span> Ask Faris</button>
-<div class="ask-modal" id="askModal" aria-hidden="true"><div class="ask-card"><button class="close-modal" id="closeAsk" aria-label="Close">×</button><p class="eyebrow">A SMALL EXPERIMENT</p><h2>Ask <em>Faris.</em></h2><p class="muted">A lightweight portfolio assistant for curious visitors. The full AI backend can be connected later.</p><div class="ask-suggestions"><button data-question="What is Faris interested in?">What is Faris into?</button><button data-question="What is Faris currently building?">What is he building?</button><button data-question="How can I contact Faris?">How can I reach him?</button></div><div class="ask-answer" id="askAnswer">Pick a question to start.</div></div></div>
+<div class="project-modal" id="projectModal" aria-hidden="true"><div class="project-modal-card"><button class="close-modal" id="closeProject" aria-label="Close">×</button><p class="eyebrow" id="projectModalCategory">PROJECT</p><h2 id="projectModalTitle"></h2><p class="muted" id="projectModalDetails"></p><div class="tags" id="projectModalTags"></div><div class="project-modal-links" id="projectModalLinks"></div></div></div><div class="ask-modal" id="askModal" aria-hidden="true"><div class="ask-card"><button class="close-modal" id="closeAsk" aria-label="Close">×</button><p class="eyebrow">A SMALL EXPERIMENT</p><h2>Ask <em>Faris.</em></h2><p class="muted">A lightweight portfolio assistant for curious visitors. The full AI backend can be connected later.</p><div class="ask-suggestions"><button data-question="What is Faris interested in?">What is Faris into?</button><button data-question="What is Faris currently building?">What is he building?</button><button data-question="How can I contact Faris?">How can I reach him?</button></div><div class="ask-answer" id="askAnswer">Pick a question to start.</div></div></div>
 
 <div class="toast" id="toast" role="status"></div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="script.js?v=12"></script>
+<script src="script.js?v=13"></script>
 </body>
 </html>
