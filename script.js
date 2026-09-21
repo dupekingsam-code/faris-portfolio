@@ -26,17 +26,17 @@ async function loadAll(){
   $('meta[name="description"]')?.setAttribute('content',profile.bio||'');
   $('#heroBio').textContent=profile.bio||'';
   $('#aboutBio').textContent=profile.bio||'';
-  $('#heroImage').src=profile.hero_image||'https://images.unsplash.com/photo-1639868801168-4add16909e2b?auto=format&fit=crop&fm=jpg&q=82&w=1800';
+  if($('#heroImage')) $('#heroImage').remove();
   $('#connectEmail').href='mailto:'+profile.email;
   $('#connectInstagram').href=profile.instagram||'#';
-  $('#connectGithub').href=profile.github||'#';
+  $('#connectGithub').href=profile.github||'#';$('#heroInstagram').href=profile.instagram||'#';$('#heroGithub').href=profile.github||'#';$('#heroLinkedin').href=profile.linkedin||'#';$('#heroEmail').href='mailto:'+profile.email;
   renderSkills(skills||[]);renderExperiments(experiments||[]);renderProjects(projects||[]);renderPosts(posts||[]);renderFaq(faq||[]);
 }
 function renderSkills(rows){$('#skillsGrid').innerHTML=rows.length?rows.map((x,i)=>'<article class="skill"><div class="skill-icon">'+escapeHtml(x.icon||'✦')+'</div><strong>'+escapeHtml(x.name)+'</strong><span>'+escapeHtml(x.label||'Exploring')+'</span></article>').join(''):'<div class="loading-line">Skills are being updated.</div>'}
 function renderExperiments(rows){$('#experimentsList').innerHTML=rows.length?rows.map((x,i)=>'<article class="experiment"><span class="experiment-num">'+String(i+1).padStart(2,'0')+'</span><div><h3>'+escapeHtml(x.title)+'</h3><p>'+escapeHtml(x.description||'')+'</p></div><span class="status-pill">'+escapeHtml(x.status||'EXPLORING')+'</span></article>').join(''):'<div class="loading-line">Nothing public here yet.</div>'}
 function renderProjects(rows){projectRows=rows;renderProjectFilters(rows);
  if(!rows.length){$('#projectGrid').innerHTML='<div class="empty-project"><span>01</span><h3>Things are being built.</h3><p>There\'s nothing I\'m ready to show here yet. That\'s okay. The interesting part is usually what happens before the finished thing.</p><span class="tiny">CHECK BACK LATER ↗</span></div>';return}
- $('#projectGrid').innerHTML=rows.map(x=>'<article class="project" data-category="'+escapeHtml(x.category||'Web')+'"><div class="project-media">'+(x.image_url?'<img src="'+escapeHtml(x.image_url)+'" alt="'+escapeHtml(x.title)+'" loading="lazy">':'')+'</div><div class="project-body"><span class="tiny">'+escapeHtml(x.category||'PROJECT')+'</span><h3>'+escapeHtml(x.title)+'</h3><p>'+escapeHtml(x.description||'')+'</p><div class="tags">'+(x.technologies||[]).map(t=>'<span class="tag">'+escapeHtml(t)+'</span>').join('')+'</div><div class="project-links">'+(x.live_url?'<a href="'+escapeHtml(x.live_url)+'" target="_blank" rel="noopener">Live demo ↗</a>':'')+(x.github_url?'<a href="'+escapeHtml(x.github_url)+'" target="_blank" rel="noopener">GitHub ↗</a>':'')+'</div></div></article>').join('')
+ $('#projectGrid').innerHTML=rows.map(x=>'<article class="project" data-category="'+escapeHtml(x.category||'Web')+'"><div class="project-media">'+(x.image_url?'<img src="'+escapeHtml(x.image_url)+'" alt="'+escapeHtml(x.title)+'" loading="lazy">':'<div class="project-placeholder">'+escapeHtml(x.category||'BUILD')+'</div>')+'</div><div class="project-body"><span class="tiny">'+escapeHtml(x.category||'PROJECT')+'</span><h3>'+escapeHtml(x.title)+'</h3><p>'+escapeHtml(x.description||'')+'</p><div class="tags">'+(x.technologies||[]).map(t=>'<span class="tag">'+escapeHtml(t)+'</span>').join('')+'</div><div class="project-links"><button type="button" class="project-detail" data-project="'+x.id+'">Details ↗</button>'+(x.live_url?'<a href="'+escapeHtml(x.live_url)+'" target="_blank" rel="noopener">Live demo ↗</a>':'')+(x.github_url?'<a href="'+escapeHtml(x.github_url)+'" target="_blank" rel="noopener">GitHub ↗</a>':'')+'</div></div></article>').join('');$('.project-detail').forEach(b=>b.addEventListener('click',()=>openProject(Number(b.dataset.project))))
 }
 function renderProjectFilters(rows){const cats=['all',...new Set(rows.map(x=>x.category||'Other'))];const el=$('#projectFilters');if(!el)return;el.innerHTML=cats.map(c=>'<button class="filter-chip '+(c==='all'?'active':'')+'" data-filter="'+escapeHtml(c)+'">'+escapeHtml(c==='all'?'All work':c)+'</button>').join('');document.querySelectorAll('.filter-chip').forEach(b=>b.addEventListener('click',()=>{ document.querySelectorAll('.filter-chip').forEach(x=>x.classList.remove('active'));b.classList.add('active');const f=b.dataset.filter;document.querySelectorAll('.project').forEach(p=>p.style.display=(f==='all'||p.dataset.category===f)?'':'none');beep(480,.04)}))}
 function openProject(id){const x=projectRows.find(p=>p.id===id);if(!x)return;$('#projectModalCategory').textContent=x.category||'PROJECT';$('#projectModalTitle').textContent=x.title;$('#projectModalDetails').textContent=x.details||x.description||'';$('#projectModalTags').innerHTML=(x.technologies||[]).map(t=>'<span class="tag">'+escapeHtml(t)+'</span>').join('');$('#projectModalLinks').innerHTML=(x.live_url?'<a class="button button-dark" href="'+escapeHtml(x.live_url)+'" target="_blank" rel="noopener">Live demo ↗</a>':'')+(x.github_url?'<a class="text-link" href="'+escapeHtml(x.github_url)+'" target="_blank" rel="noopener">GitHub ↗</a>':'');$('#projectModal').classList.add('open');$('#projectModal').setAttribute('aria-hidden','false');beep(650,.05)}
@@ -49,8 +49,8 @@ window.addEventListener('scroll',()=>{const h=document.documentElement.scrollHei
 
 $('#themeToggle').addEventListener('click',()=>{const next=document.documentElement.dataset.theme==='dark'?'light':'dark';setTheme(next);beep(next==='dark'?330:660,.06)});
 $('#soundToggle').addEventListener('click',()=>{const on=localStorage.getItem('faris-sound')==='on';localStorage.setItem('faris-sound',on?'off':'on');$('#soundToggle').textContent=on?'◌':'◉';if(!on)beep(700,.07);showToast(on?'Interface sounds off.':'Interface sounds on.')});
-$('#soundToggle').textContent=localStorage.getItem('faris-sound')==='on'?'◉':'◌';
-$$('[data-sound]').forEach(x=>x.addEventListener('click',()=>beep(560,.04)));
+if(localStorage.getItem('faris-sound')===null)localStorage.setItem('faris-sound','on');$('#soundToggle').textContent=localStorage.getItem('faris-sound')==='on'?'◉':'◌';
+document.addEventListener('click',e=>{if(e.target.closest('button,a')) beep(560,.035)});
 
 $('#menuBtn').addEventListener('click',()=>{const open=$('#navLinks').classList.toggle('open');document.body.classList.toggle('menu-open',open);$('#menuBtn').setAttribute('aria-expanded',open);});
 $$('#navLinks a').forEach(a=>a.addEventListener('click',()=>{$('#navLinks').classList.remove('open');document.body.classList.remove('menu-open');$('#menuBtn').setAttribute('aria-expanded','false');}));
@@ -70,4 +70,6 @@ function closeAsk(){$('#askModal').classList.remove('open');$('#askModal').setAt
 $$('.ask-suggestions button').forEach(b=>b.addEventListener('click',()=>{const q=b.dataset.question.toLowerCase();let a='';if(q.includes('interested'))a=profile.name+' is currently exploring AI, web development, technology and new ideas — learning by building.';else if(q.includes('building'))a='Right now the portfolio is the main experiment. More projects will appear here as they become ready.';else a='The easiest way is '+profile.email+'. You can also use the contact form on this page.';$('#askAnswer').textContent=a;beep(520,.04)}));
 
 loadAll().catch(err=>{console.error(err);showToast('Some live content could not load.')});
-\nlet logoClicks=0;$$('.brand').forEach(b=>b.addEventListener('click',()=>{logoClicks++;if(logoClicks===5){showToast('You found the quiet corner. ✦');beep(880,.1);logoClicks=0}}));\n
+
+let logoClicks=0;
+$$('.brand').forEach(b=>b.addEventListener('click',()=>{logoClicks++;if(logoClicks===5){showToast('You found the quiet corner. ✦');beep(880,.1);logoClicks=0}}));
