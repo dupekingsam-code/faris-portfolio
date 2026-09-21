@@ -1,56 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Faris Admin</title>
-  <link rel="stylesheet" href="admin.css">
-</head>
-<body>
-  <main class="shell">
-    <section id="login-card" class="card">
-      <div class="eyebrow">PRIVATE AREA</div>
-      <h1>Faris Admin</h1>
-      <p class="muted">Sign in to update your portfolio.</p>
-      <form id="login-form">
-        <label>Email<input id="login-email" type="email" autocomplete="email" required value="dupekingsam@gmail.com"></label>
-        <label>Password<input id="login-password" type="password" autocomplete="current-password" required></label>
-        <button type="submit">Sign in</button>
-        <p id="login-status" class="status"></p>
-      </form>
-    </section>
-
-    <section id="dashboard" class="hidden">
-      <div class="topbar">
-        <div>
-          <div class="eyebrow">CONTROL ROOM</div>
-          <h1>Portfolio Admin</h1>
-        </div>
-        <button id="logout" class="secondary">Log out</button>
-      </div>
-
-      <section class="card">
-        <h2>Profile</h2>
-        <p class="muted">These values appear on the public website.</p>
-        <form id="profile-form">
-          <label>Name<input id="name" type="text" required></label>
-          <label>Bio<textarea id="bio" rows="4" required></textarea></label>
-          <label>Public email<input id="email" type="email"></label>
-          <label>Instagram URL<input id="instagram" type="url" placeholder="https://www.instagram.com/..."></label>
-          <button id="save-profile" type="submit">Save changes</button>
-          <p id="save-status" class="status"></p>
-        </form>
-      </section>
-
-      <section class="card coming">
-        <div>
-          <h2>Projects</h2>
-          <p class="muted">Project management is the next module. It will let you add, edit and delete projects without touching the website code.</p>
-        </div>
-        <span>COMING NEXT</span>
-      </section>
-    </section>
-  </main>
-  <script src="admin.js?v=7"></script>
-</body>
-</html>
+<!doctype html>
+<html lang="en" data-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Faris Control</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600&display=swap" rel="stylesheet"><link rel="stylesheet" href="admin.css"></head>
+<body><main class="admin-shell">
+<section id="loginCard" class="login-card"><p class="eyebrow">PRIVATE AREA</p><h1>Faris <em>Control.</em></h1><p class="muted">Your little control room for the website.</p><form id="loginForm"><label>Email<input id="loginEmail" type="email" value="dupekingsam@gmail.com" required></label><label>Password<input id="loginPassword" type="password" required autocomplete="current-password"></label><button class="primary" type="submit">Enter control room ↗</button><p class="status" id="loginStatus"></p></form></section>
+<section id="dashboard" class="hidden">
+<header class="admin-top"><div><p class="eyebrow">FARIS / CONTROL ROOM</p><h1>Make changes.<br><em>Ship them.</em></h1></div><div class="top-actions"><a href="index.html">View site ↗</a><button id="logout">Log out</button></div></header>
+<div class="dashboard-grid">
+<aside class="side-nav"><button class="tab active" data-tab="overview">Overview</button><button class="tab" data-tab="profile">Profile</button><button class="tab" data-tab="skills">Skills</button><button class="tab" data-tab="experiments">Currently building</button><button class="tab" data-tab="projects">Projects</button><button class="tab" data-tab="posts">Thoughts</button><button class="tab" data-tab="faq">FAQ</button><button class="tab" data-tab="messages">Messages</button><button class="tab" data-tab="settings">Settings</button></aside>
+<div class="panels">
+<section class="panel active" data-panel="overview"><div class="panel-head"><div><p class="eyebrow">OVERVIEW</p><h2>Good to see you.</h2></div></div><div class="stat-grid"><div><span id="statProjects">0</span><small>Projects</small></div><div><span id="statPosts">0</span><small>Published notes</small></div><div><span id="statMessages">0</span><small>Messages</small></div><div><span id="statSkills">0</span><small>Skills</small></div></div><div class="tip-card"><strong>Site status</strong><p>Live content is coming from Supabase. Change something here, refresh the public site, and it appears without editing HTML.</p></div></section>
+<section class="panel" data-panel="profile"><div class="panel-head"><div><p class="eyebrow">PROFILE</p><h2>Who is Faris?</h2></div></div><form id="profileForm" class="form-grid"><label>Name<input id="pName" required></label><label>Public email<input id="pEmail" type="email"></label><label class="wide">Bio<textarea id="pBio" rows="5"></textarea></label><label>Instagram<input id="pInstagram" type="url"></label><label>GitHub<input id="pGithub" type="url"></label><label>LinkedIn<input id="pLinkedin" type="url"></label><label>YouTube<input id="pYoutube" type="url"></label><label>Hero image URL<input id="pHero" type="url"></label><div class="wide"><button class="primary" type="submit">Save profile</button><p class="status" id="profileStatus"></p></div></form></section>
+<section class="panel" data-panel="skills"><div class="panel-head"><div><p class="eyebrow">SKILLS</p><h2>What I'm learning.</h2></div><button class="small-button" data-new="skills">+ Add</button></div><div id="skillsAdmin" class="admin-list"></div><form id="skillsForm" class="inline-form hidden"><input type="hidden" id="skillId"><input id="skillName" placeholder="Skill" required><input id="skillLabel" placeholder="Label e.g. Exploring"><input id="skillIcon" placeholder="Icon" value="✦"><input id="skillOrder" type="number" placeholder="Order" value="1"><button class="primary" type="submit">Save</button><button type="button" data-cancel="skills">Cancel</button></form></section>
+<section class="panel" data-panel="experiments"><div class="panel-head"><div><p class="eyebrow">NOW</p><h2>Currently building.</h2></div><button class="small-button" data-new="experiments">+ Add</button></div><div id="experimentsAdmin" class="admin-list"></div><form id="experimentsForm" class="inline-form hidden"><input type="hidden" id="experimentId"><input id="experimentTitle" placeholder="Title" required><input id="experimentDescription" placeholder="Description"><input id="experimentStatus" placeholder="Status" value="EXPLORING"><input id="experimentOrder" type="number" value="1"><button class="primary" type="submit">Save</button><button type="button" data-cancel="experiments">Cancel</button></form></section>
+<section class="panel" data-panel="projects"><div class="panel-head"><div><p class="eyebrow">WORK</p><h2>Projects.</h2></div><button class="small-button" data-new="projects">+ Add</button></div><div id="projectsAdmin" class="admin-list"></div><form id="projectsForm" class="edit-card hidden"><input type="hidden" id="projectId"><div class="form-grid"><label>Title<input id="projectTitle" required></label><label>Category<input id="projectCategory" value="Web"></label><label class="wide">Description<textarea id="projectDescription" rows="3"></textarea></label><label class="wide">Details<textarea id="projectDetails" rows="5"></textarea></label><label>Technologies<input id="projectTech" placeholder="AI, JavaScript, Supabase"></label><label>Status<input id="projectStatus" value="BUILDING"></label><label>Image URL<input id="projectImage" type="url"></label><label>Live URL<input id="projectLive" type="url"></label><label>GitHub URL<input id="projectGithub" type="url"></label><label>Order<input id="projectOrder" type="number" value="1"></label></div><div class="form-actions"><button class="primary" type="submit">Save project</button><button type="button" data-cancel="projects">Cancel</button></div></form></section>
+<section class="panel" data-panel="posts"><div class="panel-head"><div><p class="eyebrow">THOUGHTS</p><h2>Notes.</h2></div><button class="small-button" data-new="posts">+ Add</button></div><div id="postsAdmin" class="admin-list"></div><form id="postsForm" class="edit-card hidden"><input type="hidden" id="postId"><label>Title<input id="postTitle" required></label><label>Excerpt<input id="postExcerpt"></label><label>Content<textarea id="postContent" rows="10"></textarea></label><label>Cover URL<input id="postCover" type="url"></label><label>Tags<input id="postTags" placeholder="AI, Learning"></label><label class="check"><input id="postPublished" type="checkbox"> Published</label><div class="form-actions"><button class="primary" type="submit">Save note</button><button type="button" data-cancel="posts">Cancel</button></div></form></section>
+<section class="panel" data-panel="faq"><div class="panel-head"><div><p class="eyebrow">FAQ</p><h2>Questions.</h2></div><button class="small-button" data-new="faq">+ Add</button></div><div id="faqAdmin" class="admin-list"></div><form id="faqForm" class="inline-form hidden"><input type="hidden" id="faqId"><input id="faqQuestion" placeholder="Question" required><input id="faqAnswer" placeholder="Answer" required><input id="faqOrder" type="number" value="1"><button class="primary" type="submit">Save</button><button type="button" data-cancel="faq">Cancel</button></form></section>
+<section class="panel" data-panel="messages"><div class="panel-head"><div><p class="eyebrow">INBOX</p><h2>Messages.</h2></div><button class="small-button" id="refreshMessages">Refresh</button></div><div id="messagesAdmin" class="message-list"></div></section>
+<section class="panel" data-panel="settings"><div class="panel-head"><div><p class="eyebrow">SETTINGS</p><h2>Little details.</h2></div></div><div class="tip-card"><strong>Analytics</strong><p>Analytics is intentionally left as the next module. When connected, this page can show visits, devices, referrers and popular sections without cluttering the public site.</p></div><div class="tip-card"><strong>Ask Faris</strong><p>The public assistant is currently a lightweight portfolio experiment. The secure AI backend can be connected later without redesigning the interface.</p></div></section>
+</div></div></section></main><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="admin.js?v=12"></script></body></html>
