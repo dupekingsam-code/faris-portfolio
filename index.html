@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20">
+<link rel="stylesheet" href="styles.css?v=21">
 </head>
 <body>
 <div class="loader" id="loader"><div class="loader-mark">F<span>.</span></div><div class="loader-line"><i></i></div><div class="loader-meta"><span>INITIALISING FARIS.EXE</span><span>2026</span></div></div>
@@ -48,33 +48,37 @@
 </div>
 </div>
 <div class="hero-right">
-<div class="toc-terminal" id="tocTerminal">
-  <div class="toc-head">
-    <span><i></i><i></i><i></i></span>
-    <span>faris@portfolio:~</span>
-    <span>TOC / 09</span>
+<div class="command-terminal" id="commandTerminal" tabindex="0">
+  <div class="terminal-windowbar">
+    <span class="terminal-dots"><i></i><i></i><i></i></span>
+    <span>faris@portfolio:~$</span>
+    <span>TERMINAL / ONLINE</span>
   </div>
-  <div class="toc-screen">
-    <div class="toc-command"><span>$</span> ls ./sections</div>
-    <p class="toc-intro">A quick way through the site.</p>
-    <nav class="toc-list" aria-label="Table of contents">
-      <a href="#experience" data-toc="01" data-sound><span>01</span><b>EXPERIENCE</b><em>/experience</em></a>
-      <a href="#skills" data-toc="02" data-sound><span>02</span><b>SKILLS</b><em>/skills</em></a>
-      <a href="#now" data-toc="03" data-sound><span>03</span><b>NOW</b><em>/now</em></a>
-      <a href="#work" data-toc="04" data-sound><span>04</span><b>PROJECTS</b><em>/projects</em></a>
-      <a href="#thoughts" data-toc="05" data-sound><span>05</span><b>BLOG</b><em>/blog</em></a>
-      <a href="#education" data-toc="06" data-sound><span>06</span><b>EDUCATION</b><em>/education</em></a>
-      <a href="#faq" data-toc="07" data-sound><span>07</span><b>FAQ</b><em>/faq</em></a>
-      <a href="#contact" data-toc="08" data-sound><span>08</span><b>CONTACT</b><em>/contact</em></a>
-    </nav>
-    <div class="toc-output" id="tocOutput"><span>></span> select a section to navigate<span class="cursor">_</span></div>
+  <div class="terminal-console" id="terminalConsole" aria-live="polite">
+    <div class="term-line term-info">Welcome to faris.terminal v1.0.0</div>
+    <div class="term-line term-info">Type <b>"help"</b> to see available commands.</div>
+    <div class="term-gap"></div>
+    <div class="term-line term-prompt"><span>guest@faris:~$</span> <span>help</span></div>
+    <div class="term-output help-output">
+      <div class="term-muted">Available commands:</div>
+      <button type="button" data-command="about">about <small>— who is Faris?</small></button>
+      <button type="button" data-command="experience">experience <small>— how I work</small></button>
+      <button type="button" data-command="skills">skills <small>— current stack</small></button>
+      <button type="button" data-command="projects">projects <small>— things I've shipped</small></button>
+      <button type="button" data-command="now">now <small>— what I'm building</small></button>
+      <button type="button" data-command="blog">blog <small>— notes & ideas</small></button>
+      <button type="button" data-command="education">education <small>— learning journey</small></button>
+      <button type="button" data-command="contact">contact <small>— let's talk</small></button>
+      <button type="button" data-command="clear">clear <small>— clear terminal</small></button>
+    </div>
+    <form class="terminal-input-row" id="terminalForm">
+      <label for="terminalInput">guest@faris:~$</label>
+      <input id="terminalInput" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Terminal command" placeholder="type a command…" />
+    </form>
   </div>
-  <div class="toc-foot">
-    <span>STATUS: <b>ONLINE</b></span>
-    <span>TYPE: INTERACTIVE</span>
-  </div>
+  <div class="terminal-status"><span>● ONLINE</span><span>TYPE HELP</span></div>
 </div>
-<div class="side-note">NAV / 2026<br>CLICK TO EXPLORE ↘</div>
+<div class="side-note">TRY / HELP<br>THEN EXPLORE ↘</div>
 </div>
 </section>
 
@@ -132,5 +136,5 @@
 <div class="modal" id="projectModal" aria-hidden="true"><div class="modal-box"><button class="close" id="closeProject">×</button><span class="label" id="projectModalCategory">PROJECT</span><h2 id="projectModalTitle"></h2><p id="projectModalDetails"></p><div class="tags" id="projectModalTags"></div><div id="projectModalLinks"></div></div></div>
 <div class="modal" id="askModal" aria-hidden="true"><div class="modal-box ask-box"><button class="close" id="closeAsk">×</button><span class="label">A SMALL EXPERIMENT</span><h2>ASK <em>FARIS.</em></h2><p>Pick a question. This starter assistant works without an API key; an AI backend can be connected later.</p><div class="questions"><button data-question="What is Faris interested in?">What is Faris into?</button><button data-question="What is Faris building?">What is he building?</button><button data-question="How can I contact Faris?">How can I reach him?</button></div><div id="askAnswer" class="answer">Choose a question.</div></div></div>
 <div id="toast" class="toast" role="status"></div>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="script.js?v=20"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="script.js?v=21"></script>
 </body></html>
