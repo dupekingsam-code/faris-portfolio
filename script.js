@@ -1,6 +1,6 @@
 const SUPABASE_URL='https://zrcfulryxnwffdlpudxo.supabase.co';
 const SUPABASE_KEY='sb_publishable_4KcOsFvIRvjgI0JMMjZRqA_8uDrjodc';
-const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+const supabaseClient=window.supabase?.createClient?.(SUPABASE_URL,SUPABASE_KEY)||null;
 
 const $=s=>document.querySelector(s);
 const $$=s=>[...document.querySelectorAll(s)];
@@ -13,6 +13,7 @@ function setTheme(theme){document.documentElement.dataset.theme=theme;localStora
 setTheme(localStorage.getItem('faris-theme')||'light');
 
 async function loadAll(){
+  if(!supabaseClient){ showToast('Live content is offline — showing the portfolio.'); return; }
   const [{data:p},{data:skills},{data:experiments},{data:projects},{data:posts},{data:faq}]=await Promise.all([
     supabaseClient.from('profile').select('name,bio,email,instagram,github,linkedin,youtube,hero_image').eq('id',1).maybeSingle(),
     supabaseClient.from('skills').select('*').order('sort_order'),
@@ -59,7 +60,7 @@ $('#backTop').addEventListener('click',()=>window.scrollTo({top:0,behavior:'smoo
 
 $('#contactForm').addEventListener('submit',async e=>{
  e.preventDefault();const form=e.currentTarget,button=form.querySelector('button'),status=$('#formStatus');button.disabled=true;status.textContent='Sending…';
- const fd=new FormData(form);const {error}=await supabaseClient.from('messages').insert({name:fd.get('name'),email:fd.get('email'),message:fd.get('message')});
+ const fd=new FormData(form);if(!supabaseClient){status.textContent='Please email me directly for now.';button.disabled=false;return}const {error}=await supabaseClient.from('messages').insert({name:fd.get('name'),email:fd.get('email'),message:fd.get('message')});
  if(error){status.textContent='Could not send that. Please email me directly.';console.error(error)}else{form.reset();status.textContent='Message sent. Thanks — I\'ll see it.';showToast('Message sent.');beep(760,.09)}
  button.disabled=false;
 });
